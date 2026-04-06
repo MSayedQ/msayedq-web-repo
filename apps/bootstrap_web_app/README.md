@@ -1,12 +1,34 @@
-# Bootstrap demo
+## Bootstrap demo (Vite)
 
-Bootstrap 5 layout (navbar, cards) with a todo list and Express API integration.
+### What this is
 
-## Environment
+A small **Bootstrap 5** layout (navbar + cards) with a todo list and API calls to Express.
 
-- `VITE_API_URL` — Express base URL (default `http://localhost:3000`)
+### Prereqs
 
-## Scripts
+- **Express** running (default `http://localhost:3000`)
 
-- `pnpm dev` — port **5182**
-- `pnpm build` — static build
+### Environment
+
+Create `apps/bootstrap_web_app/.env` (optional):
+
+```bash
+VITE_API_URL=http://localhost:3000
+```
+
+### Commands
+
+From repo root:
+
+```bash
+pnpm --filter @repo/bootstrap-web-app dev
+```
+
+### URLs / ports
+
+- Dev server: `http://localhost:5182`
+- API: `VITE_API_URL` (defaults to `http://localhost:3000`)
+
+### Troubleshooting
+
+- If the UI shows **API errors**, confirm Express is running and `GET /health` works.

@@ -1,12 +1,40 @@
-# Angular (standalone)
+## Angular (standalone)
 
-Routing, `TodoComponent`, and `TodoService` using `HttpClient` against Express.
+### What this is
 
-## Environment
+An **Angular** standalone app with:
 
-Edit `src/environments/environment.ts` — `apiUrl` (default `http://localhost:3000`).
+- routing (`src/app/app.routes.ts`)
+- a `TodoComponent` UI
+- a `TodoService` using `HttpClient` to call Express
 
-## Scripts
+### Prereqs
 
-- `pnpm dev` — `ng serve` on port **4200**
-- `pnpm build` — output under `dist/angular_app/`
+- **Express** running (default `http://localhost:3000`)
+
+### Environment
+
+Edit `src/environments/environment.ts`:
+
+- `apiUrl` defaults to `http://localhost:3000`
+
+### Commands
+
+From repo root:
+
+```bash
+pnpm --filter @repo/angular-app dev
+```
+
+### URLs / ports
+
+- Dev server: `http://localhost:4200`
+- API: `environment.apiUrl`
+
+### Notes
+
+- This repo uses **Angular’s application builder** (`@angular/build:application`). Build output is configured in `angular.json` (`outputPath: dist/angular_app`).
+
+### Troubleshooting
+
+- If the UI shows **API errors**, confirm Express is running and `GET /health` works.

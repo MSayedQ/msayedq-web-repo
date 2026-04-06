@@ -1,12 +1,34 @@
-# Vue 3 + Vite
+## Vue 3 + Vite
 
-Composition API todo UI calling Express.
+### What this is
 
-## Environment
+A **Vue 3** + **Vite** demo using the Composition API + `fetch` to call Express.
 
-- `VITE_API_URL`
+### Prereqs
 
-## Scripts
+- **Express** running (default `http://localhost:3000`)
 
-- `pnpm dev` — port **5179**
-- `pnpm build`
+### Environment
+
+Create `apps/vue_app/.env` (optional):
+
+```bash
+VITE_API_URL=http://localhost:3000
+```
+
+### Commands
+
+From repo root:
+
+```bash
+pnpm --filter @repo/vue-app dev
+```
+
+### URLs / ports
+
+- Dev server: `http://localhost:5179`
+- API: `VITE_API_URL` (defaults to `http://localhost:3000`)
+
+### Troubleshooting
+
+- If the UI shows **API errors**, confirm Express is running and `GET /health` works.

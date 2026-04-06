@@ -1,12 +1,35 @@
-# NestJS server
+## NestJS server
 
-Modular Nest app: `HealthController`, `TodoModule`, `UserModule`. Same JSON shape as Express for easy client comparison.
+### What this is
 
-## Environment
+A modular **NestJS** API that mirrors the Express routes so you can compare frameworks side-by-side.
 
-- `PORT` — default **3001**
+### Modules / structure (high level)
 
-## Scripts
+- `HealthController` (`GET /health`)
+- `TodoModule` (`/todos`)
+- `UserModule` (`/users`)
 
-- `pnpm dev` — `nest start --watch`
-- `pnpm build` / `pnpm start`
+### Environment
+
+Copy `servers/nestjs_server/.env.example` to `.env` (optional):
+
+```bash
+PORT=3001
+```
+
+### Commands
+
+From repo root:
+
+```bash
+pnpm --filter @repo/nestjs-server dev
+```
+
+### URLs / ports
+
+- Default: `http://localhost:3001`
+
+### Notes
+
+- Shared types/helpers come from `@repo/shared`.

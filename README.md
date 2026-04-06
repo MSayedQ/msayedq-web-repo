@@ -1,84 +1,115 @@
-# Web technology comparison monorepo
+## Web technology comparison monorepo
 
-This repository is a **pnpm + Turborepo** workspace for learning, comparing, and demonstrating multiple front-end stacks and two Node servers. Apps share **`@repo/shared`** (types and helpers), **`@repo/ui`** (design tokens and CSS), and **`@repo/config`** (ESLint, Prettier, TypeScript bases).
+This repo is a **pnpm + Turborepo** workspace for learning and comparing multiple front-end stacks plus two Node servers.
 
-## Prerequisites
+### What you get
 
-- Node.js **20+** (LTS recommended)
-- [pnpm](https://pnpm.io/) 9.x
+- **Many small demo apps** (`apps/*`) that all implement the same idea: a simple todo list + an API snapshot panel.
+- **Two comparable APIs** (`servers/*`): Express and NestJS expose the same JSON routes.
+- **Shared packages** (`packages/*`):
+  - `@repo/shared`: shared TypeScript types + small helpers
+  - `@repo/ui`: shared CSS tokens + utility classes
+  - `@repo/config`: shared ESLint / Prettier / TS bases
 
-## Quick start
+### Prerequisites
+
+- **Node.js 20+** (LTS recommended)
+- **pnpm 9.x**
+
+### Install
 
 ```bash
 pnpm install
-pnpm turbo run dev
 ```
 
-Start the **Express** API in a second terminal so client apps can load todos and users:
+### Run (recommended workflow)
+
+Most front-end demos call the **Express** API at `http://localhost:3000` by default.
+
+**Terminal A — API**
 
 ```bash
 pnpm --filter @repo/express-server dev
 ```
 
-Default API base URL: `http://localhost:3000`.
+**Terminal B — pick one UI**
 
-## Ports (avoid collisions when running everything)
+```bash
+pnpm --filter @repo/react-app dev
+```
 
-| Service        | Port |
-| -------------- | ---- |
-| Express        | 3000 |
-| NestJS         | 3001 |
-| Next.js        | 3002 |
-| Nuxt           | 3003 |
-| Angular        | 4200 |
-| SvelteKit      | 5177 |
-| React (Vite)   | 5178 |
-| Vue (Vite)     | 5179 |
-| Svelte (Vite)  | 5180 |
-| Pure web       | 5181 |
-| Bootstrap      | 5182 |
-| jQuery         | 5183 |
+**Optional — run many dev servers at once**
 
-Override URLs with env files (see root `.env.example` and each app’s README).
+```bash
+pnpm dev
+```
 
-## Workspace layout
+This runs `turbo run dev` across the workspace. It starts a lot of processes; this repo sets Turbo `concurrency` high enough to avoid the default limit.
 
-- `apps/` — front-end demos (todo + counter + API panel calling Express)
-- `servers/` — `express_server`, `nestjs_server`
-- `packages/` — `shared`, `ui`, `config`
+### Environment variables (quick reference)
 
-## Scripts
+Copy the root template:
 
-| Command              | Description                |
-| -------------------- | -------------------------- |
-| `pnpm dev`           | `turbo run dev` (parallel) |
-| `pnpm build`         | Build all packages         |
-| `pnpm lint`          | ESLint across workspaces   |
-| `pnpm test`          | Placeholder test scripts   |
-| `pnpm turbo run dev` | Same as `pnpm dev`         |
+```bash
+cp .env.example .env
+```
 
-## Packages
+Common variables:
 
-- **`@repo/shared`** — `Todo`, `User`, API response types; `createTodo` helper (compiled to CommonJS for broad tooling compatibility).
-- **`@repo/ui`** — CSS tokens (`tokens.css`) and utility classes (`components.css`).
-- **`@repo/config`** — Shared Prettier config, ESLint flat config, and TypeScript bases.
+- **Vite apps**: `VITE_API_URL` (default `http://localhost:3000`)
+- **Next.js (browser)**: `NEXT_PUBLIC_API_URL`
+- **Nuxt**: `NUXT_PUBLIC_API_URL`
+- **SvelteKit (public env)**: `PUBLIC_API_URL`
 
-## API contract (Express & NestJS)
+### Ports (so you don’t collide)
+
+| Service | Port |
+| --- | ---: |
+| Express | 3000 |
+| NestJS | 3001 |
+| Next.js | 3002 |
+| Nuxt | 3003 |
+| Angular | 4200 |
+| SvelteKit | 5177 |
+| React (Vite) | 5178 |
+| Vue (Vite) | 5179 |
+| Svelte (Vite) | 5180 |
+| Pure web | 5181 |
+| Bootstrap | 5182 |
+| jQuery | 5183 |
+
+### Workspace layout
+
+- `apps/`: front-end demos
+- `servers/`: `express_server`, `nestjs_server`
+- `packages/`: `shared`, `ui`, `config`
+
+### Root scripts
+
+| Command | What it does |
+| --- | --- |
+| `pnpm dev` | `turbo run dev` |
+| `pnpm build` | `turbo run build` |
+| `pnpm lint` | `turbo run lint` |
+| `pnpm test` | placeholder test scripts |
+| `pnpm format` | Prettier write |
+
+### API contract (Express + NestJS)
 
 Both servers expose:
 
-- `GET /health` — `{ status, service, timestamp }`
-- `GET /todos` — `{ data: Todo[] }`
-- `POST /todos` — body `{ title }`
-- `PATCH /todos/:id` — body `{ completed? , title? }`
-- `GET /users` — `{ data: User[] }`
+- `GET /health`
+- `GET /todos`
+- `POST /todos` (JSON: `{ "title": string }`)
+- `PATCH /todos/:id` (JSON: `{ "completed"?: boolean, "title"?: string }`)
+- `GET /users`
 
-## Notes
+### Troubleshooting
 
-- **Next.js** includes an App Router **`/api/todos`** route for demonstration; the home page still calls the **Express** URL from `NEXT_PUBLIC_API_URL`.
-- **SvelteKit** uses `PUBLIC_API_URL` for the public env prefix.
-- **Pure / Bootstrap / jQuery** apps use Vite for dev ergonomics while keeping the requested file names (`index.html`, `style.css`, `script.js` for pure; Bootstrap/jQuery use `src/` entrypoints).
+- **`pnpm turbo run dev` complains about concurrency**: this repo sets Turbo concurrency; if you still hit limits, run `pnpm exec turbo run dev --concurrency 25`.
+- **UI shows API errors**: start Express first (`pnpm --filter @repo/express-server dev`) and confirm `http://localhost:3000/health` works in the browser.
+- **Svelte tooling can’t resolve `@sveltejs/*` from the monorepo root**: this repo hoists `@sveltejs/*` via `.npmrc` (`public-hoist-pattern`). Re-run `pnpm install` after changing `.npmrc`.
 
-## License
+### License
 
 MIT (educational use).

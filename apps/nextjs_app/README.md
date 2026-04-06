@@ -1,12 +1,37 @@
-# Next.js (App Router)
+## Next.js (App Router)
 
-Server-rendered shell; client `TodoClient` fetches Express. Includes **`/api/todos`** as a sample API route using `@repo/shared`.
+### What this is
 
-## Environment
+A **Next.js App Router** demo:
 
-- `NEXT_PUBLIC_API_URL` — Express URL for the browser (default `http://localhost:3000`)
+- The page UI uses a client component (`TodoClient`) that calls **Express** (not Next) for todos/health/users.
+- There is also a sample route handler at `src/app/api/todos` to demonstrate a Next API route using `@repo/shared`.
 
-## Scripts
+### Prereqs
 
-- `pnpm dev` — port **3002**
-- `pnpm build`
+- **Express** running (default `http://localhost:3000`) if you want the UI to talk to Express
+
+### Environment
+
+Create `apps/nextjs_app/.env.local` (optional):
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+### Commands
+
+From repo root:
+
+```bash
+pnpm --filter @repo/nextjs-app dev
+```
+
+### URLs / ports
+
+- Dev server: `http://localhost:3002`
+- API used by the browser: `NEXT_PUBLIC_API_URL` (defaults to `http://localhost:3000`)
+
+### Troubleshooting
+
+- If the UI shows **API errors**, confirm Express is running and `GET /health` works.
