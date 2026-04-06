@@ -1,0 +1,13 @@
+:root {
+  --repo-color-bg: #0f172a;
+  --repo-color-surface: #1e293b;
+  --repo-color-border: #334155;
+  --repo-color-text: #f8fafc;
+  --repo-color-muted: #94a3b8;
+  --repo-color-accent: #38bdf8;
+  --repo-color-accent-contrast: #0c4a6e;
+  --repo-radius: 10px;
+  --repo-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
+  --repo-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+}

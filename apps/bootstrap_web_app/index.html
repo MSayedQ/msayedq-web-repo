@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
+      <div class="container">
+        <a class="navbar-brand" href="#">Bootstrap app</a>
+        <span class="navbar-text small" id="api-url"></span>
+      </div>
+    </nav>
+    <main class="container py-4">
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="card shadow-sm bg-body-tertiary border-secondary">
+            <div class="card-body">
+              <h5 class="card-title">Todos</h5>
+              <p class="card-subtitle mb-3 text-secondary">Counter + API to Express</p>
+              <div class="input-group mb-3">
+                <input id="todo-input" type="text" class="form-control" placeholder="New todo" />
+                <button id="add-btn" class="btn btn-primary" type="button">Add</button>
+              </div>
+              <p class="badge text-bg-secondary" id="counter">Count: 0</p>
+              <ul id="todo-list" class="list-group list-group-flush"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card shadow-sm border-secondary">
+            <div class="card-body">
+              <h6 class="card-title">API snapshot</h6>
+              <pre id="api-panel" class="small mb-0 text-secondary">Loading…</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

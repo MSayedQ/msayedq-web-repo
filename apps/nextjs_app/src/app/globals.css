@@ -1,0 +1,6 @@
+@import '@repo/ui/tokens.css';
+@import '@repo/ui/components.css';
+
+code {
+  color: var(--repo-color-accent);
+}

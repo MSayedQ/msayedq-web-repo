@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pure HTML/CSS/JS</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="repo-app">
+      <div class="repo-container">
+        <header class="repo-card">
+          <h1 class="repo-title">Pure web</h1>
+          <p class="repo-subtitle">Todo + fetch to Express (<code id="api-label"></code>)</p>
+          <div class="repo-row">
+            <input id="todo-input" class="repo-input" type="text" placeholder="Add a todo" />
+            <button id="add-btn" class="repo-btn repo-btn--primary" type="button">Add</button>
+          </div>
+          <p class="repo-badge" id="counter-label">Count: 0</p>
+          <ul id="todo-list" class="repo-list"></ul>
+          <pre id="api-panel" class="repo-kv">Loading API…</pre>
+        </header>
+      </div>
+    </div>
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

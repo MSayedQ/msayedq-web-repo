@@ -1,0 +1,13 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@repo/ui/tokens.css';
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 20% 0%, #1d4ed8 0%, transparent 55%),
+    radial-gradient(900px 500px at 90% 10%, #7c3aed 0%, transparent 50%), var(--repo-color-bg);
+}
+
+#todo-list .list-group-item {
+  background: rgba(15, 23, 42, 0.35);
+  border-color: rgba(148, 163, 184, 0.25);
+}

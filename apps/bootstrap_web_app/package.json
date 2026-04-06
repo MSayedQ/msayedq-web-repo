@@ -1,0 +1,22 @@
+{
+  "name": "@repo/bootstrap-web-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5182",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --max-warnings 0",
+    "test": "echo \"No tests\""
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@repo/ui": "workspace:*",
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6"
+  }
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery demo</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="repo-app">
+      <div class="repo-container">
+        <div class="repo-card">
+          <h1 class="repo-title">jQuery</h1>
+          <p class="repo-subtitle">AJAX todos · API: <code id="api-url"></code></p>
+          <div class="repo-row">
+            <input id="todo-input" class="repo-input" type="text" placeholder="Add todo" />
+            <button id="add-btn" class="repo-btn repo-btn--primary" type="button">Add</button>
+          </div>
+          <p class="repo-badge" id="counter">Count: 0</p>
+          <ul id="todo-list" class="repo-list"></ul>
+          <pre id="api-panel" class="repo-kv">Loading…</pre>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
